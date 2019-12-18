@@ -2,6 +2,11 @@ import requests
 import urllib.request
 import time
 from bs4 import BeautifulSoup
+import os
+
+def dossier():
+    os.chdir("Google Drive//Python//Web-Scrapper")
+
 
 """
 
@@ -26,22 +31,17 @@ download_url = link
 
 """
 
-Arriver à télécharger l'image
+Télécharger l'image
 
 """
 
 
-
+#On fait une requête et on cache le fait que l'on est un robot
 req = urllib.request.Request(download_url, headers={'User-Agent': 'Mozilla/5.0'})
 
+#on prend le content de la page en bytes
+web_byte = urllib.request.urlopen(req).read()
 
-#web = urllib.request.urlretrieve(req)
-web_byte = urlopen(req).read()
+#on écrit le content dans un fichier test et on lui file le bon format
+open('test.jpg','wb').write(web_byte)
 
-webpage = web_byte.decode('utf-8')
-
-
-
-
-
-#urllib.request.urlretrieve(link, 'text.jpg') 

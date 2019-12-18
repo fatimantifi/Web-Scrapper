@@ -3,15 +3,15 @@ import urllib.request
 import time
 from bs4 import BeautifulSoup
 
-url = 'http://web.mta.info/developers/turnstile.html'
+url = "https://www.mangareader.net/tate-no-yuusha-no-nariagari/1/2"
 response = requests.get(url)
 
 soup = BeautifulSoup(response.text, "html.parser")
-soup.findAll('a')
 
-one = soup.findAll('a')[36]
-link = one['href']
+Im = soup.findAll('img')[0]
 
-download_url = 'http://web.mta.info/developers/'+ link
+link = Im['src']
 
-urllib.request.urlretrieve(download_url,"./'"+link[link.find('/turnstile_')+1:]) 
+download_url = link
+
+urllib.request.urlretrieve(link, 'text.jpg') 

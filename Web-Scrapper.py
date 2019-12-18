@@ -15,6 +15,11 @@ def dossier():
 
 
 
+
+
+
+
+
 def get_pages(token, nb):
     pages = []
     for i in range(1,nb+1):
@@ -22,7 +27,7 @@ def get_pages(token, nb):
         pages.append(j)
     return pages
 
-pages = get_pages(token,295)
+pages = get_pages(token,20)
 
 # https://www.proxy-list.download/HTTPS
 proxies = pd.read_csv('proxy_list.txt', header = None)
@@ -38,6 +43,7 @@ def get_data(pages,proxies):
     
     while len(pages) > 0:
         for i in pages:
+            print(i)
         # on lit les pages une par une et on initialise une table vide pour ranger les données d'une page     
             df_f = pd.DataFrame()
         # itération dans un liste de proxies    

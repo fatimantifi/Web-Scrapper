@@ -14,4 +14,13 @@ link = Im['src']
 
 download_url = link
 
-urllib.request.urlretrieve(link, 'text.jpg') 
+
+class AppURLopener(urllib.request.FancyURLopener):
+    version = "Mozilla/5.0"
+
+opener = AppURLopener()
+response = opener.open(link)
+
+
+
+#urllib.request.urlretrieve(link, 'text.jpg') 

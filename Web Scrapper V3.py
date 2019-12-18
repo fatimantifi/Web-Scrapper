@@ -32,26 +32,15 @@ Arriver à télécharger l'image
 
 
 
-req = Request(download_url, headers={'User-Agent': 'Mozilla/5.0'})
+req = urllib.request.Request(download_url, headers={'User-Agent': 'Mozilla/5.0'})
 
 
-web = urlretrieve(req)
+#web = urllib.request.urlretrieve(req)
 web_byte = urlopen(req).read()
 
 webpage = web_byte.decode('utf-8')
 
 
-
-
-
-
-
-
-class AppURLopener(urllib.request.FancyURLopener):
-    version = "Mozilla/5.0"
-
-opener = AppURLopener()
-response = opener.open(link)
 
 
 

@@ -22,8 +22,6 @@ trunk = "https://www.mangareader.net"
 url = trunk + "/tate-no-yuusha-no-nariagari/1/2"
 response = requests.get(url)
 
-url = "https://www.mangareader.net/tate-no-yuusha-no-nariagari/62"
-
 
 
 """
@@ -96,3 +94,15 @@ def ListeToString(L):
         M = M[0]
         M = ListeToString(M)
     return M
+
+
+"""
+
+Test d'une boucle
+
+"""
+NouvelleUrl = url
+while NouvelleUrl != "Fin du Manga":
+    [soup,download_url] = Navigate(NouvelleUrl)
+    NouvelleUrl = Next(soup)
+    print(url)

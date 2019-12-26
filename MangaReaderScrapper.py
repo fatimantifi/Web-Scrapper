@@ -134,3 +134,18 @@ def DownloadManga(url):
         Download(download_url,Titre + str(i))
         i += 1
         NouvelleUrl = Next(soup)
+
+
+
+
+
+
+
+
+"""
+
+Manga Fox : Suivant .find(class="next_prev") puis enfant btn"
+
+Boucle sur les scr de class="list_img"
+
+"""

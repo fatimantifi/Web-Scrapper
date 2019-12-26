@@ -21,6 +21,14 @@ response = requests.get(url)
 
 soup = BeautifulSoup(response.text, "html.parser")
 
+
+
+"""
+
+Recherche de l'image dans la page web
+
+"""
+
 Im = soup.findAll('img')[0]
 
 link = Im['src']
@@ -45,3 +53,17 @@ web_byte = urllib.request.urlopen(req).read()
 #on écrit le content dans un fichier test et on lui file le bon format
 open('test.jpg','wb').write(web_byte)
 
+
+
+
+"""
+
+Recherche du imgholder (qui permet d'aller à la page suivante)
+
+"""
+
+Div = soup.findAll("div")
+
+for item in Div:
+    if str(item).find("imgholder") != -1:
+       print(type(item))

@@ -14,9 +14,10 @@ Navigation dans la page Web
 
 """
 
+trunk = "https://www.mangareader.net"
 
 
-url = "https://www.mangareader.net/tate-no-yuusha-no-nariagari/1/2"
+url = trunk + "tate-no-yuusha-no-nariagari/1/2"
 response = requests.get(url)
 
 soup = BeautifulSoup(response.text, "html.parser")
@@ -62,8 +63,9 @@ Recherche du imgholder (qui permet d'aller à la page suivante)
 
 """
 
-Div = soup.findAll("div")
 
-for item in Div:
-    if str(item).find("imgholder") != -1:
-       print(type(item))
+L = soup.find(id = "imgholder")
+M = M.findChild()
+NewAdd = M['href']
+NouvelleUrl = trunk + NewAdd
+

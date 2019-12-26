@@ -7,7 +7,27 @@ import os
 def dossier():
     os.chdir("Google Drive//Python//Web-Scrapper")
 
+
+#Ne marche que sur MangaReader
+
+
+"""
+
+Initialisation
+
+"""
+
+path = r"C:\Users\Sylgi\Desktop\Manga Scrapper"
 CompteurParcours = 0
+Titre = "Manga"
+
+def Initialisation():
+    os.chdir(path)
+    if Titre not in os.listdir():
+        os.mkdir(Titre)
+    os.chdir(Titre)
+
+Initialisation()
 
 
 """
@@ -76,7 +96,9 @@ def Next(soup):
         CompteurParcours = 0
         NewAdd = ListeToString(ParcoursSoup(M,CompteurParcours))
         NouvelleUrl = trunk + NewAdd
-    NouvelleUrl = "Fin du Manga"
+    else:
+        NouvelleUrl = "Fin du Manga"
+    print(NouvelleUrl)
     return NouvelleUrl
 
 
@@ -98,11 +120,17 @@ def ListeToString(L):
 
 """
 
-Test d'une boucle
+Implémentation d'une boucle
 
 """
-NouvelleUrl = url
-while NouvelleUrl != "Fin du Manga":
-    [soup,download_url] = Navigate(NouvelleUrl)
-    NouvelleUrl = Next(soup)
-    print(url)
+
+#L'url doit être la première page
+
+def DownloadManga(url):
+    NouvelleUrl = url
+    i = 0
+    while NouvelleUrl != "Fin du Manga":
+        [soup,download_url] = Navigate(NouvelleUrl)
+        Download(download_url,Titre + str(i))
+        i += 1
+        NouvelleUrl = Next(soup)

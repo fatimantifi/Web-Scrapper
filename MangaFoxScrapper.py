@@ -77,5 +77,5 @@ Boucle sur les scr de class="list_img"
 Div = soup.findAll('div')
 for item in Div:
     if 'class' in item.attrs:
-        if item['class'] == "next_prev_chapter":
+        if item['class'] == ['next_prev_chapter']: #item['class'] est une liste.
             print(item)

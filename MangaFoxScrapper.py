@@ -63,7 +63,7 @@ def Navigate(url):
     return [soup, download_url]
 
 
-
+[soup,download_url] = Navigate(url)
 
 """
 
@@ -75,7 +75,15 @@ Boucle sur les scr de class="list_img"
 
 # A creuser
 Div = soup.findAll('div')
+L = []
 for item in Div:
     if 'class' in item.attrs:
-        if item['class'] == ['next_prev_chapter']: #item['class'] est une liste.
-            print(item)
+        if item['class'] == ['next_prev_chapter']:
+            L.append(item)
+
+M = L[0]
+for item in M.findChildren():
+    print(item.attrs)
+    #if 'title' in item.attrs:
+    #    if item['title'] == ['Next Chapter']:
+    #        print(item)

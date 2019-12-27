@@ -3,6 +3,7 @@ import urllib.request
 import time
 from bs4 import BeautifulSoup
 import os
+#from Download import *
 
 def dossier():
     os.chdir("Google Drive//Python//Web-Scrapper")
@@ -38,8 +39,7 @@ Navigation dans la page Web
 
 trunk = "https://ww3.mangafox.online"
 
-
-url = trunk + "/super-x-ray-eyes/episode-1-123017033562831"
+url = trunk + "/favorite-part/chapter-1-324246019529673"
 response = requests.get(url)
 
 
@@ -51,19 +51,26 @@ Recherche de l'image dans la page web
 """
 
 def Navigate(url):
-    response = requests.get(url)
-    soup = BeautifulSoup(response.text, "html.parser")
-    if soup.text.find("is not released") <0:
-        Im = soup.findAll('img')[0]
-        link = Im['src']
-        download_url = link
-    else:
-        print("Fin du manga")
-        download_url = "Fin du Manga"
-    return [soup, download_url]
+    if url != "Fin du Manga":
+        response = requests.get(url)
+        soup = BeautifulSoup(response.text, "html.parser")
+        ListeLiens = RecupListeLiens(soup)
+    return [soup, ListeLiens]
+
+def RecupListeLiens(soup):
+    Div = soup.findAll('div')
+    for item in Div:
+        if 'class' in item.attrs and item['class'] == ['list_img']:
+            L = item.findChildren()
+    ListeLiens = []
+    for item in L:
+        ListeLiens.append(item['src'])
+    return ListeLiens
 
 
-[soup,download_url] = Navigate(url)
+
+
+
 
 """
 
@@ -73,17 +80,35 @@ Boucle sur les scr de class="list_img"
 
 """
 
-# A creuser
-Div = soup.findAll('div')
-L = []
-for item in Div:
-    if 'class' in item.attrs:
-        if item['class'] == ['next_prev_chapter']:
-            L.append(item)
 
-M = L[0]
-for item in M.findChildren():
-    print(item.attrs)
-    #if 'title' in item.attrs:
-    #    if item['title'] == ['Next Chapter']:
-    #        print(item)
+def Next(soup,urlsvg):
+    NextUrl = "Fin du Manga"
+    if urlsvg != "Fin du Manga":
+        Div = soup.findAll('div')
+        L = []
+        for item in Div:
+            if 'class' in item.attrs and item['class'] == ['next_prev_chapter']:
+                if item['class'] == ['next_prev_chapter']: #A supprimer
+                    L.append(item)
+
+        M = L[0]
+        NextUrl ="Fin du Manga"
+        for item in M.findChildren():
+            if 'title' in item.attrs and item['title'] == 'Next Chapter':
+                NextUrl = item['href']
+        if NextUrl == "":
+            NextUrl = "Fin du Manga"
+        print(NextUrl)
+    return NextUrl
+
+def ParcourSoup(urldebut):
+    url = urldebut
+    u = 0
+    while url != "Fin du Manga":
+        [soup,ListeLiens] = Navigate(url)
+        i = 0
+        for url in ListeLiens:
+            Download(url,str(u) + str(i))
+            i += 1
+        url = Next(soup,url)
+        u+=1

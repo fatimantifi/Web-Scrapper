@@ -3,10 +3,13 @@ import urllib.request
 import time
 from bs4 import BeautifulSoup
 import os
-#from Download import *
-
 def dossier():
     os.chdir("Google Drive//Python//Web-Scrapper")
+
+dossier()
+
+from Download import *
+
 
 
 #Ne marche que sur MangaReader
@@ -20,7 +23,8 @@ Initialisation
 
 path = r"C:\Users\Sylgi\Desktop\Manga Scrapper"
 CompteurParcours = 0
-Titre = "Manga"
+Titre = "Manga2"
+url = "https://ww3.mangafox.online/the-dungeon-master/chapter-1-622281029443929"
 
 def Initialisation():
     os.chdir(path)
@@ -40,7 +44,7 @@ Navigation dans la page Web
 trunk = "https://ww3.mangafox.online"
 
 url = trunk + "/favorite-part/chapter-1-324246019529673"
-response = requests.get(url)
+
 
 
 
@@ -60,8 +64,10 @@ def Navigate(url):
 def RecupListeLiens(soup):
     Div = soup.findAll('div')
     for item in Div:
+        print(item.attrs)
         if 'class' in item.attrs and item['class'] == ['list_img']:
-            L = item.findChildren()
+            print(item)
+            #L = item.findChildren()
     ListeLiens = []
     for item in L:
         ListeLiens.append(item['src'])
@@ -100,15 +106,3 @@ def Next(soup,urlsvg):
             NextUrl = "Fin du Manga"
         print(NextUrl)
     return NextUrl
-
-def ParcourSoup(urldebut):
-    url = urldebut
-    u = 0
-    while url != "Fin du Manga":
-        [soup,ListeLiens] = Navigate(url)
-        i = 0
-        for url in ListeLiens:
-            Download(url,str(u) + str(i))
-            i += 1
-        url = Next(soup,url)
-        u+=1

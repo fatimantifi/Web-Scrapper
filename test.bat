@@ -1,2 +1,2 @@
-python Web-Scrapper.py
+python MangaFoxScrapper.py
 pause

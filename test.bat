@@ -1,2 +1,2 @@
-python MangaFoxScrapper.py
+python MangaLeno.py
 pause

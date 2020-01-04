@@ -18,18 +18,18 @@ Initialisation
 """
 
 
-path = r"C:\Users\Sylgi\Desktop\Manga Scrapper"
+path = r"C:\Users\Utilisateur\Desktop\Manga Scrapper"
 CompteurParcours = 0
-Titre = "BrawlingGo"
-url = "https://manganelo.com/chapter/brawling_go/chapter_0"
+Titre = "Fall In Love Because Of You"
+url = "https://manganelo.com/chapter/mt921341/chapter_1"
 
-def Initialisation():
+def Initialisation(Titre):
     os.chdir(path)
     if Titre not in os.listdir():
         os.mkdir(Titre)
     os.chdir(Titre)
 
-Initialisation()
+Initialisation(Titre)
 
 def Navigate(url):
     if url != "Fin du Manga":
@@ -118,9 +118,10 @@ def ClasseNextListe(tag):
 
 
 def Liste():
-    ListeTitre = ["SuperbCaptain","Iron Ladies","DomesticNoKanojo"]
-    ListeUrl = ["https://ww3.mangafox.online/the-superb-captain-in-the-city","https://ww3.mangafox.online/iron-ladies","https://ww3.mangafox.online/domestic-na-kanojo/chapter-1-i-want-to-become-an-adult-quickly-703387354022149"]
+    ListeTitre = ["Fall In Love Because Of You","Vicious Luck","Yami no Chikara","Special Eyes","SatsurikuKuindeddoOnnaShikeishuu","Chichi no Jukan","The World of Moral Reversal","Tamorawa"]
+    ListeUrl = ["https://manganelo.com/chapter/mt921341/chapter_1","https://manganelo.com/chapter/ki921326/chapter_1","https://mangakakalot.com/chapter/yn918383/chapter_1","https://manganelo.com/chapter/ad921328/chapter_1","https://mangakakalot.com/chapter/es921638/chapter_1","https://mangakakalot.com/chapter/kc921212/chapter_1","https://mangakakalot.com/chapter/the_world_of_moral_reversal/chapter_1","https://mangakakalot.com/chapter/oj920167/chapter_1"]
     for i in range(0,len(ListeTitre)-1):
         Titre = ListeTitre[i]
+        Initialisation(Titre)
         url = ListeUrl[i]
         ParcourSoup(url)

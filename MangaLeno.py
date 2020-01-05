@@ -29,7 +29,7 @@ def Initialisation(Titre):
         os.mkdir(Titre)
     os.chdir(Titre)
 
-Initialisation(Titre)
+Initialisation(Titre,url)
 
 def Navigate(url):
     if url != "Fin du Manga":

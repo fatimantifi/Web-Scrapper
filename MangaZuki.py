@@ -18,18 +18,15 @@ Initialisation
 """
 
 
-path = r"C:\Users\Sylgi\Desktop\Manga Scrapper"
+path = r"C:\Users\Utilisateur\Desktop\Manga Scrapper"
 CompteurParcours = 0
 Titre = "Gangnam Romance"
 url = "https://www.mangazuki.online/manga/gangnam-romance/chapter-1/"
 
-def Initialisation(Titre):
-    os.chdir(path)
-    if Titre not in os.listdir():
-        os.mkdir(Titre)
-    os.chdir(Titre)
 
-Initialisation(Titre)
+
+
+Initialisation(Titre,url)
 
 def Navigate(url):
     if url != "Fin du Manga":
@@ -59,30 +56,11 @@ def RecupListeLiens(soup):
 def Next(soup,urlsvg):
     NextUrl = "Fin du Manga"
     if urlsvg != "Fin du Manga":
-        #Div = soup.findAll('div')
         A = soup.findAll('a')
         L = []
-        """
-        for item in Div:
-            if ClasseNextDiv(item):
-                L.append(item)
-        for item in L: #Mettre L[0]
-            if item.a.text == "NEXT CHAPTER":
-                NextUrl = item.a['href']
-            else:
-                for tag in item.findChildren():
-                    print(tag)
-                    if ClasseNextListe(item):
-                        NextUrl = tag['href']
-        for item in L[0].findChildren():
-            if item.a.text == "NEXT CHAPTER":
-                NextUrl = item.a['href']
-        """
         for a in A:
             if 'class' in a.attrs and a['class'] == ['btn','next_page']:
                 NextUrl = a['href']
-
-
         if NextUrl == "":
             NextUrl = "Fin du Manga"
         print(NextUrl)
@@ -118,11 +96,11 @@ def ClasseNextListe(tag):
     return bool
 
 
-
+#https://whatstatus.co/manga/manga/world/chapter-0
 
 def Liste():
-    ListeTitre = ["Fall In Love Because Of You","Vicious Luck","Yami no Chikara","Special Eyes","SatsurikuKuindeddoOnnaShikeishuu","Chichi no Jukan","The World of Moral Reversal","Tamorawa"]
-    ListeUrl = ["https://manganelo.com/chapter/mt921341/chapter_1","https://manganelo.com/chapter/ki921326/chapter_1","https://mangakakalot.com/chapter/yn918383/chapter_1","https://manganelo.com/chapter/ad921328/chapter_1","https://mangakakalot.com/chapter/es921638/chapter_1","https://mangakakalot.com/chapter/kc921212/chapter_1","https://mangakakalot.com/chapter/the_world_of_moral_reversal/chapter_1","https://mangakakalot.com/chapter/oj920167/chapter_1"]
+    ListeTitre = ['Lust Awakening','QueenBe','Daily Life','Rental Girl','TakeaPeek','What she Fell','Holic']
+    ListeUrl = ['https://www.mangazuki.online/manga/lust-awakening/lust-awakening-chapter-1/','https://www.mangazuki.online/manga/queen-bee/queen-bee-chapter-1/','https://www.mangazuki.online/manga/read-a-perverts-daily-life-manhwa/chapter-1/','https://www.mangazuki.online/manga/read-rental-girls/rental-girls-chapter-1/','https://www.mangazuki.online/manga/take-a-peek/take-a-peek-chapter-1/','https://www.mangazuki.site/manga/my-dick/chapter-1-22','https://www.mangazuki.site/manga/holic/chapter-1']
     for i in range(0,len(ListeTitre)-1):
         Titre = ListeTitre[i]
         Initialisation(Titre)

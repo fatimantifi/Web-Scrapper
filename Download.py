@@ -16,6 +16,14 @@ def Download(download_url,name):
             #on écrit le content dans un fichier test et on lui file le bon format
             open(name + '.jpg','wb').write(web_byte)
 
+def Initialisation(Titre,url):
+    os.chdir(path)
+    if Titre not in os.listdir():
+        os.mkdir(Titre)
+    os.chdir(Titre)
+    with open("DebutFin.txt","w+") as df:
+        df.write(url)
+        df.write("\n")
 
 def Compression():
     os.mkdir("Compr")

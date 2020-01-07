@@ -34,7 +34,7 @@ trunk = "https://www.mangareader.net"
 
 
 url = trunk + "/tate-no-yuusha-no-nariagari/1/2"
-response = requests.get(url)
+
 
 
 

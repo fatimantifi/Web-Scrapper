@@ -12,6 +12,9 @@ import MangaLeno as ML
 import MangaReaderScrapper as MR
 import MangaZuki as MZ
 
+
+
+
 def Download(download_url,name):
     if download_url != "Fin du Manga":
         if download_url != "https://s3.mangareader.net/images/erogesopt.jpg":
@@ -49,6 +52,22 @@ def Initialisation(Titre):
     os.chdir(Titre)
 
 
+class Site():
+    def __init__(self,url):
+        self.type = "Site"
+        self.url = url
+
+    def MAJSite(self):
+        if 'mangafox' in self.url:
+            self.type = 'MF'
+        if 'manganelo' in self.url:
+            self.type = 'ML'
+        if 'mangareader' in self.url:
+            self.type = 'MR'
+        if 'mangazuki' in self.url:
+            self.type = "MZ"
+
+
 def ParcourSoup(urldebut):
     url = urldebut
     u = 0
@@ -60,3 +79,6 @@ def ParcourSoup(urldebut):
             i += 1
         url = Next(soup,url)
         u+=1000
+
+
+

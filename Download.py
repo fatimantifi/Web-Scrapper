@@ -105,6 +105,12 @@ class Site:
             self.chapter = self.url[n:-1]
 
 
+    def DownloadListe(self):
+        i = 0
+        for lien in self.ListeLiens:
+            i +=1
+            Download(lien,self.chapter + str(i))
+
     def ParcourSoup(self):
         u = 0
         while self.url != "Fin du Manga":

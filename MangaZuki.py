@@ -62,22 +62,6 @@ def Next(soup,urlsvg):
         #Div = soup.findAll('div')
         A = soup.findAll('a')
         L = []
-        """
-        for item in Div:
-            if ClasseNextDiv(item):
-                L.append(item)
-        for item in L: #Mettre L[0]
-            if item.a.text == "NEXT CHAPTER":
-                NextUrl = item.a['href']
-            else:
-                for tag in item.findChildren():
-                    print(tag)
-                    if ClasseNextListe(item):
-                        NextUrl = tag['href']
-        for item in L[0].findChildren():
-            if item.a.text == "NEXT CHAPTER":
-                NextUrl = item.a['href']
-        """
         for a in A:
             if 'class' in a.attrs and a['class'] == ['btn','next_page']:
                 NextUrl = a['href']

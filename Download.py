@@ -52,33 +52,43 @@ def Initialisation(Titre):
     os.chdir(Titre)
 
 
-class Site():
-    def __init__(self,url):
-        self.type = "Site"
+class Site:
+    def __init__(self,url,Titre):
         self.url = url
+        self.soup = ""
+        self.ListeLiens = []
+        self.Titre = Titre
 
-    def MAJSite(self):
+    def Navigate(self):
         if 'mangafox' in self.url:
-            self.type = 'MF'
+            [self.soup,self.ListeLiens] = MF.Navigate(self.url)
         if 'manganelo' in self.url:
-            self.type = 'ML'
+            [self.soup,self.ListeLiens] = ML.Navigate(self.url)
         if 'mangareader' in self.url:
-            self.type = 'MR'
+            [self.soup,self.ListeLiens] = MR.Navigate(self.url)
         if 'mangazuki' in self.url:
-            self.type = "MZ"
+            [self.soup,self.ListeLiens] = MZ.Navigate(self.url)
 
 
-def ParcourSoup(urldebut):
-    url = urldebut
-    u = 0
-    while url != "Fin du Manga":
-        [soup,ListeLiens] = Navigate(url)
-        i = 0
-        for urldown in ListeLiens:
-            Download(urldown,str(u) + str(i))
-            i += 1
-        url = Next(soup,url)
-        u+=1000
+    def Next(self):
+        if 'mangafox' in self.url:
+            self.url = MF.Next(self.soup)
+        if 'manganelo' in self.url:
+            self.url = ML.Next(self.soup)
+        if 'mangareader' in self.url:
+            self.url = MR.Next(self.soup)
+        if 'mangazuki' in self.url:
+            self.url = MZ.Next(self.soup)
 
+    def ParcourSoup(self):
+        u = 0
+        while self.url != "Fin du Manga":
+            [self.soup,self.ListeLiens] = self.Navigate()
+            i = 0
+            for urldown in self.ListeLiens:
+                Download(urldown,str(u) + str(i))
+                i += 1
+            self.url = self.Next(self.soup,url)
+            u+=1000
 
 

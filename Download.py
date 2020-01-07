@@ -77,6 +77,9 @@ class Site:
 
 
     def Next(self):
+        if self.url != "Fin du Manga":  #A tester
+            with open("LastUrl.txt","w+") as file:
+                file.write(self.url)
         if 'mangafox' in self.url:
             self.url = MF.Next(self.soup)
         if 'manganelo' in self.url or 'mangakakalot' in self.url:
@@ -85,6 +88,7 @@ class Site:
             self.url = MR.Next(self.soup)
         if 'mangazuki' in self.url:
             self.url = MZ.Next(self.soup)
+
 
     def Chapter(self):
         if 'mangafox' in self.url:
@@ -113,28 +117,45 @@ class Site:
             i +=1
             Download(lien,self.chapter + "_" + f"{i:03d}")
 
-    def ParcourSoup(self):
+    def InitSoup(self):
         while self.url != "Fin du Manga":
             self.Navigate()
             Initialisation(self.Titre)
             self.DownloadListe()
             self.Next()
 
+    def ReprendreSoup(self):  #A tester
+        with open("LastUrl.txt","r") as file:
+            self.Initialisation(self.Titre)
+            self.url = file.read()
+            self.Next()
+        while self.url != "Fin du Manga":
+            self.Navigate()
+            self.DownloadListe()
+            self.Next()
 
-"""
 
-def ParcourSoup(urls):
-    url = urls
-    u = 0
-    while url != "Fin du Manga":
-        [soup,ListeLiens] = Navigate()
-        i = 0
-        for urldown in self.ListeLiens:
-            Download(urldown,str(u) + str(i))
-            i += 1
-        url = Next(soup,url)
-        u+=1000
-"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def Liste():
     ListeTitre = ['Lust Awakening','QueenBe','Daily Life','Rental Girl','TakeaPeek','What she Fell','Holic']

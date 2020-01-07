@@ -13,7 +13,7 @@ import MangaReaderScrapper as MR
 import MangaZuki as MZ
 
 
-
+path = r"C:\Users\Sylgi\Desktop\Manga Scrapper"
 
 def Download(download_url,name):
     if download_url != "Fin du Manga":
@@ -45,15 +45,10 @@ def Compression():
     return ListeNon
 
 
-def Initialisation(Titre):
-    os.chdir(path)
-    if Titre not in os.listdir():
-        os.mkdir(Titre)
-    os.chdir(Titre)
 
 
-
-url = "https://www.mangareader.net/the-gamer/8/35"
+Titre  = "Test"
+url = "https://manganelo.com/chapter/rdif289091567737915/chapter_18"
 class Site:
     def __init__(self,url,Titre):
         self.url = url
@@ -61,6 +56,14 @@ class Site:
         self.ListeLiens = []
         self.Titre = Titre
         self.chapter = ""
+
+
+    def Initialisation(self):
+        os.chdir(path)
+        if self.Titre not in os.listdir():
+            os.mkdir(self.Titre)
+        os.chdir(self.Titre)
+
 
     def Navigate(self):
         if 'mangafox' in self.url:
@@ -104,34 +107,21 @@ class Site:
             n = self.url.find("chapter")
             self.chapter = self.url[n:-1]
 
-
     def DownloadListe(self):
         i = 0
         for lien in self.ListeLiens:
             i +=1
-            Download(lien,self.chapter + str(i))
+            Download(lien,self.chapter + "_" + f"{i:03d}")
 
     def ParcourSoup(self):
-        u = 0
         while self.url != "Fin du Manga":
-            [self.soup,self.ListeLiens] = self.Navigate()
-            i = 0
-            for urldown in self.ListeLiens:
-                Download(urldown,self.chapter + str(i))
-                i += 1
-            self.url = self.Next(self.soup,url)
-            u+=1000
+            self.Navigate()
+            Initialisation(self.Titre)
+            self.DownloadListe()
+            self.Next()
 
 
-
-
-
-
-
-
-
-
-
+"""
 
 def ParcourSoup(urls):
     url = urls
@@ -144,6 +134,7 @@ def ParcourSoup(urls):
             i += 1
         url = Next(soup,url)
         u+=1000
+"""
 
 def Liste():
     ListeTitre = ['Lust Awakening','QueenBe','Daily Life','Rental Girl','TakeaPeek','What she Fell','Holic']

@@ -50,7 +50,7 @@ def Navigate(url):
     if soup.text.find("is not released") <0:
         Im = soup.findAll('img')[0]
         link = Im['src']
-        download_url = link
+        download_url = [link]
     else:
         print("Fin du manga")
         download_url = "Fin du Manga"

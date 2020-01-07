@@ -18,8 +18,6 @@ Initialisation
 
 path = r"C:\Users\Sylgi\Desktop\Manga Scrapper"
 CompteurParcours = 0
-Titre = "Gangnam Romance"
-url = "https://www.mangazuki.online/manga/gangnam-romance/chapter-1/"
 
 
 
@@ -77,13 +75,3 @@ def ClasseNextListe(tag):
     return bool
 
 
-
-
-def Liste():
-    ListeTitre = ["Fall In Love Because Of You","Vicious Luck","Yami no Chikara","Special Eyes","SatsurikuKuindeddoOnnaShikeishuu","Chichi no Jukan","The World of Moral Reversal","Tamorawa"]
-    ListeUrl = ["https://manganelo.com/chapter/mt921341/chapter_1","https://manganelo.com/chapter/ki921326/chapter_1","https://mangakakalot.com/chapter/yn918383/chapter_1","https://manganelo.com/chapter/ad921328/chapter_1","https://mangakakalot.com/chapter/es921638/chapter_1","https://mangakakalot.com/chapter/kc921212/chapter_1","https://mangakakalot.com/chapter/the_world_of_moral_reversal/chapter_1","https://mangakakalot.com/chapter/oj920167/chapter_1"]
-    for i in range(0,len(ListeTitre)-1):
-        Titre = ListeTitre[i]
-        Initialisation(Titre)
-        url = ListeUrl[i]
-        ParcourSoup(url)

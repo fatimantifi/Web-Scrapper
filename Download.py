@@ -133,36 +133,3 @@ class Site:
             self.Navigate()
             self.DownloadListe()
             self.Next()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-def Liste():
-    ListeTitre = ['Lust Awakening','QueenBe','Daily Life','Rental Girl','TakeaPeek','What she Fell','Holic']
-    ListeUrl = ['https://www.mangazuki.online/manga/lust-awakening/lust-awakening-chapter-1/','https://www.mangazuki.online/manga/queen-bee/queen-bee-chapter-1/','https://www.mangazuki.online/manga/read-a-perverts-daily-life-manhwa/chapter-1/','https://www.mangazuki.online/manga/read-rental-girls/rental-girls-chapter-1/','https://www.mangazuki.online/manga/take-a-peek/take-a-peek-chapter-1/','https://www.mangazuki.site/manga/my-dick/chapter-1-22','https://www.mangazuki.site/manga/holic/chapter-1']
-    for i in range(0,len(ListeTitre)-1):
-        Titre = ListeTitre[i]
-        Initialisation(Titre)
-        url = ListeUrl[i]
-        ParcourSoup(url)
-

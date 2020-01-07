@@ -3,6 +3,14 @@ import urllib.request
 import os
 from PIL import Image
 import shutil
+def dossier():
+    os.chdir("Google Drive//Python//Web-Scrapper")
+
+dossier()
+import MangaFoxScrapper as MF
+import MangaLeno as ML
+import MangaReaderScrapper as MR
+import MangaZuki as MZ
 
 def Download(download_url,name):
     if download_url != "Fin du Manga":
@@ -34,6 +42,11 @@ def Compression():
     return ListeNon
 
 
+def Initialisation(Titre):
+    os.chdir(path)
+    if Titre not in os.listdir():
+        os.mkdir(Titre)
+    os.chdir(Titre)
 
 
 def ParcourSoup(urldebut):

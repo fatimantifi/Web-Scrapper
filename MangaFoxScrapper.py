@@ -3,10 +3,12 @@ import urllib.request
 import time
 from bs4 import BeautifulSoup
 import os
-def dossier():
-    os.chdir("Google Drive//Python//Web-Scrapper")
 
-dossier()
+if __name__ == '__main__':
+    def dossier():
+        os.chdir("Google Drive//Python//Web-Scrapper")
+
+    dossier()
 
 
 
@@ -24,24 +26,14 @@ CompteurParcours = 0
 Titre = "Manga2"
 url = "https://ww3.mangafox.online/the-top-clan-leader-in-history/chapter-74-1192366631948209"
 
-def Initialisation():
-    os.chdir(path)
-    if Titre not in os.listdir():
-        os.mkdir(Titre)
-    os.chdir(Titre)
-
-Initialisation()
-
-
 """
 
 Navigation dans la page Web
 
 """
 
-trunk = "https://ww3.mangafox.online"
 
-url = trunk + "/favorite-part/chapter-1-324246019529673"
+url = "https://ww3.mangafox.online/favorite-part/chapter-1-324246019529673"
 
 
 
@@ -82,6 +74,7 @@ Boucle sur les scr de class="list_img"
 """
 
 def Next(soup):
+    trunk = "https://ww3.mangafox.online"
     NextUrl = ""
     A = soup.findAll('a')
     L = []

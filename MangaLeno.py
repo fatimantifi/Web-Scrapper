@@ -3,10 +3,11 @@ import urllib.request
 import time
 from bs4 import BeautifulSoup
 import os
-def dossier():
-    os.chdir("Google Drive//Python//Web-Scrapper")
+if __name__ == '__main__':
+    def dossier():
+        os.chdir("Google Drive//Python//Web-Scrapper")
 
-dossier()
+    dossier()
 
 """
 
@@ -19,14 +20,6 @@ path = r"C:\Users\Utilisateur\Desktop\Manga Scrapper"
 CompteurParcours = 0
 Titre = "Fall In Love Because Of You"
 url = "https://manganelo.com/chapter/mt921341/chapter_1"
-
-def Initialisation(Titre):
-    os.chdir(path)
-    if Titre not in os.listdir():
-        os.mkdir(Titre)
-    os.chdir(Titre)
-
-Initialisation(Titre)
 
 def Navigate(url):
     if url != "Fin du Manga":

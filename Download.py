@@ -13,7 +13,7 @@ import MangaReaderScrapper as MR
 import MangaZuki as MZ
 
 
-path = r"C:\Users\Sylgi\Desktop\Manga Scrapper"
+path = r"C:\Users\Utilisateur\Desktop\Manga Scrapper"
 
 def Download(download_url,name):
     if download_url != "Fin du Manga":
@@ -60,6 +60,8 @@ class Site:
         if self.Titre not in os.listdir():
             os.mkdir(self.Titre)
         os.chdir(self.Titre)
+        with open('Titre.txt','w+') as file:
+            file.write(self.Titre)
 
 
     def Navigate(self):
@@ -130,3 +132,8 @@ class Site:
             self.Navigate()
             self.DownloadListe()
             self.Next()
+
+
+def Reprise():
+    os.chdir(path)
+

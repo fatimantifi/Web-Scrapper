@@ -46,9 +46,6 @@ def Compression():
 
 
 
-
-Titre  = "Test"
-url = "https://manganelo.com/chapter/rdif289091567737915/chapter_18"
 class Site:
     def __init__(self,url,Titre):
         self.url = url

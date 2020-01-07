@@ -136,4 +136,7 @@ class Site:
 
 def Reprise():
     os.chdir(path)
+    for dossier in os.listdir():
+        if os.path.isdir(dossier):
+            print(dossier)
 

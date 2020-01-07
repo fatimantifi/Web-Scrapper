@@ -16,7 +16,7 @@ Initialisation
 """
 
 
-path = r"C:\Users\Sylgi\Desktop\Manga Scrapper"
+path = r"C:\Users\Utilisateur\Desktop\Manga Scrapper"
 CompteurParcours = 0
 Titre = "Gangnam Romance"
 url = "https://www.mangazuki.online/manga/gangnam-romance/chapter-1/"
@@ -55,6 +55,8 @@ def Next(soup):
     for a in A:
         if 'class' in a.attrs and a['class'] == ['btn','next_page']:
             NextUrl = a['href']
+
+
     if NextUrl == "":
         NextUrl = "Fin du Manga"
     print(NextUrl)

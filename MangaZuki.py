@@ -8,9 +8,6 @@ def dossier():
 
 dossier()
 
-from Download import *
-
-
 """
 
 Initialisation
@@ -18,7 +15,7 @@ Initialisation
 """
 
 
-path = r"C:\Users\Sylgi\Desktop\Manga Scrapper"
+path = r"C:\Users\Utilisateur\Desktop\Manga Scrapper"
 CompteurParcours = 0
 Titre = "Gangnam Romance"
 url = "https://www.mangazuki.online/manga/gangnam-romance/chapter-1/"
@@ -56,50 +53,19 @@ def RecupListeLiens(soup):
 
 
 
-def Next(soup,urlsvg):
-    NextUrl = "Fin du Manga"
-    if urlsvg != "Fin du Manga":
-        #Div = soup.findAll('div')
-        A = soup.findAll('a')
-        L = []
-        """
-        for item in Div:
-            if ClasseNextDiv(item):
-                L.append(item)
-        for item in L: #Mettre L[0]
-            if item.a.text == "NEXT CHAPTER":
-                NextUrl = item.a['href']
-            else:
-                for tag in item.findChildren():
-                    print(tag)
-                    if ClasseNextListe(item):
-                        NextUrl = tag['href']
-        for item in L[0].findChildren():
-            if item.a.text == "NEXT CHAPTER":
-                NextUrl = item.a['href']
-        """
-        for a in A:
-            if 'class' in a.attrs and a['class'] == ['btn','next_page']:
-                NextUrl = a['href']
+def Next(soup):
+    NextUrl = ""
+    A = soup.findAll('a')
+    L = []
+    for a in A:
+        if 'class' in a.attrs and a['class'] == ['btn','next_page']:
+            NextUrl = a['href']
 
 
-        if NextUrl == "":
-            NextUrl = "Fin du Manga"
-        print(NextUrl)
+    if NextUrl == "":
+        NextUrl = "Fin du Manga"
+    print(NextUrl)
     return NextUrl
-
-
-def ParcourSoup(urldebut):
-    url = urldebut
-    u = 0
-    while url != "Fin du Manga":
-        [soup,ListeLiens] = Navigate(url)
-        i = 0
-        for urldown in ListeLiens:
-            Download(urldown,str(u) + str(i))
-            i += 1
-        url = Next(soup,url)
-        u+=1000
 
 
 def ClasseDownload(item):

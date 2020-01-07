@@ -8,8 +8,6 @@ def dossier():
 
 dossier()
 
-from Download import *
-
 
 
 #Ne marche que sur MangaReader
@@ -21,10 +19,10 @@ Initialisation
 
 """
 
-path = r"C:\Users\Sylgi\Desktop\Manga Scrapper"
+path = r"C:\Users\Utilisateur\Desktop\Manga Scrapper"
 CompteurParcours = 0
 Titre = "Manga2"
-url = "https://ww3.mangafox.online/the-dungeon-master/chapter-1-622281029443929"
+url = "https://ww3.mangafox.online/the-top-clan-leader-in-history/chapter-74-1192366631948209"
 
 def Initialisation():
     os.chdir(path)
@@ -62,16 +60,13 @@ def Navigate(url):
     return [soup, ListeLiens]
 
 def RecupListeLiens(soup):
-    Div = soup.findAll('div')
-    for item in Div:
-        print(item.attrs)
-        if 'class' in item.attrs and item['class'] == ['list_img']:
-            print(item)
-            #L = item.findChildren()
+    Img = soup.findAll('img')
     ListeLiens = []
-    for item in L:
-        ListeLiens.append(item['src'])
+    for item in Img:
+        if 'class' in item.attrs and item['class'] == ['load_img']:
+            ListeLiens.append(item['src'])
     return ListeLiens
+
 
 
 
@@ -86,23 +81,17 @@ Boucle sur les scr de class="list_img"
 
 """
 
-
-def Next(soup,urlsvg):
-    NextUrl = "Fin du Manga"
-    if urlsvg != "Fin du Manga":
-        Div = soup.findAll('div')
-        L = []
-        for item in Div:
-            if 'class' in item.attrs and item['class'] == ['next_prev_chapter']:
-                if item['class'] == ['next_prev_chapter']: #A supprimer
-                    L.append(item)
-
-        M = L[0]
-        NextUrl ="Fin du Manga"
-        for item in M.findChildren():
-            if 'title' in item.attrs and item['title'] == 'Next Chapter':
-                NextUrl = item['href']
-        if NextUrl == "":
-            NextUrl = "Fin du Manga"
-        print(NextUrl)
+def Next(soup):
+    NextUrl = ""
+    A = soup.findAll('a')
+    L = []
+    for a in A:
+        if a.text == "Next":
+            NextUrl = a['href']
+    if NextUrl == "":
+        NextUrl = "Fin du Manga"
+    print(NextUrl)
     return NextUrl
+
+
+

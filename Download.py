@@ -3,10 +3,11 @@ import urllib.request
 import os
 from PIL import Image
 import shutil
-def dossier():
-    os.chdir("Google Drive//Python//Web-Scrapper")
+if __name__ == '__main__':
+    def dossier():
+        os.chdir("Google Drive//Python//Web-Scrapper")
 
-dossier()
+    dossier()
 import MangaFoxScrapper as MF
 import MangaLeno as ML
 import MangaReaderScrapper as MR
@@ -53,9 +54,11 @@ class Site:
         self.ListeLiens = []
         self.Titre = Titre
         self.chapter = ""
+        self.compteur = 0
 
 
     def Initialisation(self):
+        self.compteur = 0
         os.chdir(path)
         if self.Titre not in os.listdir():
             os.mkdir(self.Titre)
@@ -111,15 +114,14 @@ class Site:
             self.chapter = self.url[n:-1]
 
     def DownloadListe(self):
-        i = 0
         for lien in self.ListeLiens:
-            i +=1
-            Download(lien,self.chapter + "_" + f"{i:03d}")
+            self.compteur +=1
+            Download(lien,f"{self.compteur:05d}")
 
     def InitSoup(self):
         while self.url != "Fin du Manga":
             self.Navigate()
-            Initialisation(self.Titre)
+            self.Initialisation()
             self.DownloadListe()
             self.Next()
 
@@ -134,9 +136,17 @@ class Site:
             self.Next()
 
 
-def Reprise():
+def Reprise(): #N'affiche qu'un dossier
     os.chdir(path)
+    ListeSite = []
     for dossier in os.listdir():
         if os.path.isdir(dossier):
-            print(dossier)
+            os.chdir(dossier)
+            with open("LastUrl.txt","r") as file:
+                url = file.read()
+            with open("Titre.txt","r") as file:
+                Titre = file.read()
+            print(url)
+            print(Titre)
+            Sitee = Site(url,Titre)
 

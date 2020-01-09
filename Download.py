@@ -123,19 +123,19 @@ class Site:
             self.Initialisation()
             self.DownloadListe()
             self.Next()
-
-    def ReprendreSoup(self):  #A tester
-        with open("LastUrl.txt","r") as file:
-            self.Initialisation(self.Titre)
-            self.url = file.read()
-            self.Next()
+    def ReprendreSoup(self):
+        os.chdir(self.Titre)
+        self.Navigate()
+        self.Next()
         while self.url != "Fin du Manga":
             self.Navigate()
             self.DownloadListe()
             self.Next()
+        os.chdir("..")
 
 
-def Reprise(): #N'affiche qu'un dossier
+
+def Reprise():
     os.chdir(path)
     ListeSite = []
     for dossier in os.listdir():
@@ -145,7 +145,17 @@ def Reprise(): #N'affiche qu'un dossier
                 url = file.read()
             with open("Titre.txt","r") as file:
                 Titre = file.read()
-            print(url)
-            print(Titre)
             Sitee = Site(url,Titre)
+            ListeSite.append(Sitee)
+            os.chdir("..")
+    for site in ListeSite:
+        site.ReprendreSoup()
+    return ListeSite
 
+def BoucleCompr():
+    os.chdir(path)
+    for dossier in os.listdir():
+        if os.path.isdir(dossier):
+            os.chdir(dossier)
+            Compression()
+            os.chdir("..")

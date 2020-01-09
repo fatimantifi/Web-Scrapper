@@ -58,7 +58,6 @@ class Site:
 
 
     def Initialisation(self):
-        self.compteur = 0
         os.chdir(path)
         if self.Titre not in os.listdir():
             os.mkdir(self.Titre)

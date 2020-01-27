@@ -3,13 +3,11 @@ import urllib.request
 import time
 from bs4 import BeautifulSoup
 import os
-def dossier():
-    os.chdir("Google Drive//Python//Web-Scrapper")
+if __name__ == '__main__':
+    def dossier():
+        os.chdir("Google Drive//Python//Web-Scrapper")
 
-dossier()
-
-from Download import *
-
+    dossier()
 
 """
 
@@ -18,15 +16,10 @@ Initialisation
 """
 
 
-path = r"C:\Users\Utilisateur\Desktop\Manga Scrapper"
+path = r"C:\Users\Sylgi\Desktop\Manga Scrapper"
 CompteurParcours = 0
-Titre = "Gangnam Romance"
-url = "https://www.mangazuki.online/manga/gangnam-romance/chapter-1/"
 
 
-
-
-Initialisation(Titre,url)
 
 def Navigate(url):
     if url != "Fin du Manga":
@@ -53,17 +46,16 @@ def RecupListeLiens(soup):
 
 
 
-def Next(soup,urlsvg):
-    NextUrl = "Fin du Manga"
-    if urlsvg != "Fin du Manga":
-        A = soup.findAll('a')
-        L = []
-        for a in A:
-            if 'class' in a.attrs and a['class'] == ['btn','next_page']:
-                NextUrl = a['href']
-        if NextUrl == "":
-            NextUrl = "Fin du Manga"
-        print(NextUrl)
+def Next(soup):
+    NextUrl = ""
+    A = soup.findAll('a')
+    L = []
+    for a in A:
+        if 'class' in a.attrs and a['class'] == ['btn','next_page']:
+            NextUrl = a['href']
+    if NextUrl == "":
+        NextUrl = "Fin du Manga"
+    print(NextUrl)
     return NextUrl
 
 

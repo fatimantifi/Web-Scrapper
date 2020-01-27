@@ -42,5 +42,17 @@ def Compression():
     return ListeNon
 
 
+def ParcourSoup(urldebut):
+    url = urldebut
+    u = 0
+    while url != "Fin du Manga":
+        [soup,ListeLiens] = Navigate(url)
+        i = 0
+        for urldown in ListeLiens:
+            Download(urldown,str(u) + str(i))
+            i += 1
+        url = Next(soup,url)
+        u+=1000
+
 
 

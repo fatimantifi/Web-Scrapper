@@ -67,19 +67,6 @@ def Next(soup,urlsvg):
     return NextUrl
 
 
-def ParcourSoup(urldebut):
-    url = urldebut
-    u = 0
-    while url != "Fin du Manga":
-        [soup,ListeLiens] = Navigate(url)
-        i = 0
-        for urldown in ListeLiens:
-            Download(urldown,str(u) + str(i))
-            i += 1
-        url = Next(soup,url)
-        u+=1000
-
-
 def ClasseDownload(item):
     bool = False
     bool = 'class' in item.attrs and (item['class'] == ['page-break'])
@@ -94,15 +81,3 @@ def ClasseNextListe(tag):
     bool = False
     bool = 'class' in tag.attrs  and (tag['class'] ==['navi-change-chapter-btn-next','a-h'] or tag['class'] == ['next'])
     return bool
-
-
-#https://whatstatus.co/manga/manga/world/chapter-0
-
-def Liste():
-    ListeTitre = ['Lust Awakening','QueenBe','Daily Life','Rental Girl','TakeaPeek','What she Fell','Holic']
-    ListeUrl = ['https://www.mangazuki.online/manga/lust-awakening/lust-awakening-chapter-1/','https://www.mangazuki.online/manga/queen-bee/queen-bee-chapter-1/','https://www.mangazuki.online/manga/read-a-perverts-daily-life-manhwa/chapter-1/','https://www.mangazuki.online/manga/read-rental-girls/rental-girls-chapter-1/','https://www.mangazuki.online/manga/take-a-peek/take-a-peek-chapter-1/','https://www.mangazuki.site/manga/my-dick/chapter-1-22','https://www.mangazuki.site/manga/holic/chapter-1']
-    for i in range(0,len(ListeTitre)-1):
-        Titre = ListeTitre[i]
-        Initialisation(Titre)
-        url = ListeUrl[i]
-        ParcourSoup(url)

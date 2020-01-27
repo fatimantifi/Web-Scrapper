@@ -20,8 +20,8 @@ Initialisation
 
 path = r"C:\Users\Utilisateur\Desktop\Manga Scrapper"
 CompteurParcours = 0
-Titre = "Fall In Love Because Of You"
-url = "https://manganelo.com/chapter/mt921341/chapter_1"
+Titre = "GOHS"
+url = "http://manganelo.fun/the-god-of-high-school-chapter-0#1"
 
 def Initialisation(Titre):
     os.chdir(path)
@@ -101,7 +101,7 @@ def ParcourSoup(urldebut):
 
 def ClasseDownload(item):
     bool = False
-    bool = 'class' in item.attrs and (item['class'] == ['container-chapter-reader'] or item['class'] == ['vung-doc'])
+    bool = 'class' in item.attrs and (item['class'] == ['container-chapter-reader'] or item['class'] == ['vung-doc'] or item['class'] == ['comic_wraCon', 'text-center'])
     return bool
 
 def ClasseNextDiv(item):
@@ -114,14 +114,3 @@ def ClasseNextListe(tag):
     bool = 'class' in tag.attrs  and (tag['class'] ==['navi-change-chapter-btn-next','a-h'] or tag['class'] == ['next'])
     return bool
 
-
-
-
-def Liste():
-    ListeTitre = ["Fall In Love Because Of You","Vicious Luck","Yami no Chikara","Special Eyes","SatsurikuKuindeddoOnnaShikeishuu","Chichi no Jukan","The World of Moral Reversal","Tamorawa"]
-    ListeUrl = ["https://manganelo.com/chapter/mt921341/chapter_1","https://manganelo.com/chapter/ki921326/chapter_1","https://mangakakalot.com/chapter/yn918383/chapter_1","https://manganelo.com/chapter/ad921328/chapter_1","https://mangakakalot.com/chapter/es921638/chapter_1","https://mangakakalot.com/chapter/kc921212/chapter_1","https://mangakakalot.com/chapter/the_world_of_moral_reversal/chapter_1","https://mangakakalot.com/chapter/oj920167/chapter_1"]
-    for i in range(0,len(ListeTitre)-1):
-        Titre = ListeTitre[i]
-        Initialisation(Titre)
-        url = ListeUrl[i]
-        ParcourSoup(url)

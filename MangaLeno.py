@@ -18,7 +18,7 @@ Initialisation
 
 path = r"C:\Users\Utilisateur\Desktop\Manga Scrapper"
 CompteurParcours = 0
-<<<<<<< HEAD
+
 Titre = "GOHS"
 url = "http://manganelo.fun/the-god-of-high-school-chapter-0#1"
 

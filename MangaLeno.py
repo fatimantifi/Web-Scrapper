@@ -20,7 +20,7 @@ path = r"C:\Users\Utilisateur\Desktop\Manga Scrapper"
 CompteurParcours = 0
 
 Titre = "GOHS"
-url = "http://manganelo.fun/the-god-of-high-school-chapter-0#1"
+url = "http://manganelo.fun/tales-of-demons-and-gods-chapter-1"
 
 def Initialisation(Titre):
     os.chdir(path)
@@ -28,6 +28,11 @@ def Initialisation(Titre):
         os.mkdir(Titre)
     os.chdir(Titre)
 
+
+AA = soup.findAll('a')
+for item in AA:
+    if 'id' in item.attrs.keys():
+        print(item.attrs)
 
 
 def Navigate(url):
